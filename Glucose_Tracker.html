@@ -65,7 +65,7 @@
     width: 60%;
     height: 60%;
     margin: 0 auto;
-     1/1;
+     
 
   }
 </style>
@@ -95,11 +95,17 @@
 
 
 
-
-
-
-      <button id="push" class="btn btn-success btn-sm w-100" value="95" @click="addData">Add</button>
-      
+    
+      <div class="row">
+        <div class="col">
+          <button id="push" class="btn btn-success btn-sm w-100" value="95" @click="addData">Add</button>
+        </div>
+        <div class="col">
+          <button id="pop" class="btn btn-danger btn-sm w-100" @click="removeData">Remove</button>
+        </div>
+        <div class="col">
+          <button id="reset" class="btn btn-warning btn-sm w-100" @click="resetData">Reset</button>
+        </div>
 
     </div>
 
@@ -169,12 +175,39 @@
             myChart.data.datasets[0].data.push(value);
             myChart.data.labels.push(label);
             myChart.update();
+
+          } 
+        }
+      });
+
+      //pop data from chart
+      var app = new Vue({
+        el: '#pop',
+        methods: {
+          removeData: function () {
+            myChart.data.datasets[0].data.pop();
+            myChart.data.labels.pop();
+            myChart.update();
           }
         }
-        
-      })
+      });
 
-      //push data to database
+      //reset chart
+      var app = new Vue({
+        el: '#reset',
+        methods: {
+          resetData: function () {
+            myChart.data.datasets[0].data = [];
+            myChart.data.labels = [];
+            myChart.update();
+          }
+        }
+      });
+
+
+
+      
+
 
 
 
