@@ -55,20 +55,38 @@
 </head>
 
 <style>
-  .container-fluid {
-    margin-top: 70px;
+ 
+  .form
+  {
+    margin-top: 30px;
     width: 40%;
-
   }
 
   .chart {
     width: 60%;
     height: 60%;
-    margin: 0 auto;
-     
+    margin-top: 30px;
+    /* margin: 0 auto; */
 
   }
+
+ @media screen and (max-width: 300px) {
+  
+    .container-fluid.chart{
+      width: 300px;
+      height: 300px;
+
+    }
+
+    .form
+    {
+
+      width: 100%;
+    }
+  }
+
 </style>
+
 
 
 <body>
@@ -80,12 +98,12 @@
     </div> -->
 
 
-    <div class="chart">
+    <div class="container-fluid chart">
       <canvas id="myChart"></canvas>
     </div>
 
 
-    <div class="container-fluid">
+    <div class="container-fluid form">
      
       <input id="pushvalue" type="number" class="form-control mb-3" placeholder="Enter Glucose Level (mg/dL)"
         style="font-weight: bold;"  />
