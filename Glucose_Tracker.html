@@ -1,0 +1,293 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">DiaBEATes</a>
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Glucose Tracker <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+
+        </li>
+        <!-- <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dropdown
+              </a> -->
+        <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
+        <!-- <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Something else here</a>
+              </div> -->
+
+        <!-- </li> -->
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"
+    integrity="sha512-ElRFoEQdI5Ht6kZvyzXhYG9NqjtkmlkfYk0wr6wHxU9JEHakS7UJZNeml5ALk+8IKlU6jDgMabC3vkumRokgJA=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<style>
+  .container-fluid {
+    margin-top: 70px;
+    width: 40%;
+
+  }
+
+  .chart {
+    width: 60%;
+    height: 60%;
+    margin: 0 auto;
+     1/1;
+
+  }
+</style>
+
+
+<body>
+
+  <main>
+
+    <!-- <div class="chart">
+      <canvas id="myChart" width="400" height="400"></canvas>
+    </div> -->
+
+
+    <div class="chart">
+      <canvas id="myChart"></canvas>
+    </div>
+
+
+    <div class="container-fluid">
+     
+      <input id="pushvalue" type="number" class="form-control mb-3" placeholder="Enter Glucose Level (mg/dL)"
+        style="font-weight: bold;"  />
+       
+
+      <input id="pushlabel" type="text" class="form-control mb-3" placeholder="Enter Date" value="today" style="font-weight: bold;"  />
+
+
+
+
+
+
+      <button id="push" class="btn btn-success btn-sm w-100" value="95" @click="addData">Add</button>
+      
+
+    </div>
+
+
+
+
+    <script>
+      // variable to fetch today's date
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+      var yyyy = today.getFullYear();
+      today = mm + '/' + dd + '/' + yyyy;
+      document.getElementById("pushlabel").value = today;
+
+
+      //chart js
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Glucose Level',
+            data: [],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.2)',
+              'rgba(54, 162, 235, 0.2)',
+              'rgba(255, 206, 86, 0.2)',
+              'rgba(75, 192, 192, 0.2)',
+              'rgba(153, 102, 255, 0.2)',
+              'rgba(255, 159, 64, 0.2)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1,
+            showLine: true,
+            spanGaps: true
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              maintainAspectRatio: false,
+
+
+            }
+          }
+        }
+
+      });
+
+      //push data to chart
+      var app = new Vue({
+        el: '#push',
+        methods: {
+          addData: function () {
+            var value = document.getElementById('pushvalue').value;
+            var label = document.getElementById('pushlabel').value;
+            myChart.data.datasets[0].data.push(value);
+            myChart.data.labels.push(label);
+            myChart.update();
+          }
+        }
+        
+      })
+
+      //push data to database
+
+
+
+    </script>
+
+
+
+
+
+  </main>
+
+
+</body>
+
+</html>
+
+
+
+<!-- // const push = document.getElementById("push");
+
+const value = document.getElementById('pushvalue').value;
+onst label = document.getElementById('pushlabel').value;
+//   //push the value and label to the chart
+
+//   myChart.data.labels.push(label);
+//   myChart.data.datasets[0].data.push(value);
+//   //update the chart
+//   myChart.update();
+// });
+
+
+
+// push.addEventListener('click', pushValueChart);
+
+// function pushValueChart(){
+// const pushValue = document.getElementById('pushvalue');
+// const pushLabel = document.getElementById('pushlabel');
+// myChart.data.datasets[0].data.push(pushValue.value);
+// myChart.data.labels.push(pushlabel.value);
+// myChart.update(); -->
+
+
+<!-- // const xlabels = [];
+// const ydata = [];
+
+// export default {
+//   name: 'glucoseGraph',
+
+//   mounted() {
+//     const ctx = document.getElementById('myChart');
+//     const myChart = new Chart(ctx, {
+//       type: 'line',
+//       data: {
+//         labels: ["red", "blue", "yellow", "green", "purple", "orange"],
+//         datasets: [
+//           {
+//             label: 'Glucose Level',
+//             data: [1, 2, 3, 4, 5, 6],
+//             backgroundColor: [
+//               'rgba(255, 99, 132, 0.2)',
+//               'rgba(54, 162, 235, 0.2)',
+//               'rgba(255, 206, 86, 0.2)',
+//               'rgba(75, 192, 192, 0.2)',
+//               'rgba(153, 102, 255, 0.2)',
+//               'rgba(255, 159, 64, 0.2)',
+//             ],
+//             borderColor: [
+//               'rgba(255, 99, 132, 1)',
+//               'rgba(54, 162, 235, 1)',
+//               'rgba(255, 206, 86, 1)',
+//               'rgba(75, 192, 192, 1)',
+//               'rgba(153, 102, 255, 1)',
+//               'rgba(255, 159, 64, 1)',
+//             ],
+//             borderWidth: 1,
+//             showLine: true,
+//             spanGaps: true
+//           },
+//         ],
+//       },
+//       options: {
+//         scales: {
+//           yAxes: [
+//             {
+//               ticks: {
+//                 beginAtZero: true,
+//               },
+//             },
+//           ],
+//         },
+//       },
+//     });
+//   },
+
+//   data() {
+//     return {
+//       xlabels: 0,
+//       ydata: 0,
+
+//     };
+//   },
+//   methods: {
+
+
+//     addData() {
+//       const value = document.getElementById('pushvalue').value;
+//       const label = document.getElementById('pushlabel').value;
+//       // this.xlabels.push(label)
+//       this.ydata.push(value)
+//       this.xlabels.push(label)
+
+
+
+//     },
+
+//   },
+// }; --> 
