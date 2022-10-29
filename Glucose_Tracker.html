@@ -76,7 +76,7 @@
     margin-top: auto;
     margin-bottom: auto;
 
-   
+
 
 
   }
@@ -93,7 +93,6 @@
       width: 100%;
     }
   }
-
 </style>
 
 
@@ -111,7 +110,7 @@
       <canvas id="myChart"></canvas>
     </div>
 
-    
+
     <!-- <div class="filter">
       <form class="form">
         <div class="form-group">
@@ -210,6 +209,7 @@
         });
 
         //push data to chart
+        //cache data to local storage
         var app = new Vue({
           el: '#push',
           methods: {
@@ -235,13 +235,19 @@
               });
               myChart.update();
 
-              // myChart.data.datasets[0].data.push(value);
-              // myChart.data.labels.push(label);
-              // myChart.update();
+              //cache data to local storage
+              localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+              localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
+            },
 
-            }
+
+            // myChart.data.datasets[0].data.push(value);
+            // myChart.data.labels.push(label);
+            // myChart.update();
+
           }
         });
+
 
         //pop data from chart
         var app = new Vue({
@@ -281,15 +287,6 @@
           }
         });
 
-
-
-
-
-
-
-
-
-
       </script>
 
 
@@ -316,91 +313,3 @@ onst label = document.getElementById('pushlabel').value;
 //   //update the chart
 //   myChart.update();
 // });
-
-
-
-// push.addEventListener('click', pushValueChart);
-
-// function pushValueChart(){
-// const pushValue = document.getElementById('pushvalue');
-// const pushLabel = document.getElementById('pushlabel');
-// myChart.data.datasets[0].data.push(pushValue.value);
-// myChart.data.labels.push(pushlabel.value);
-// myChart.update(); -->
-
-
-<!-- // const xlabels = [];
-// const ydata = [];
-
-// export default {
-//   name: 'glucoseGraph',
-
-//   mounted() {
-//     const ctx = document.getElementById('myChart');
-//     const myChart = new Chart(ctx, {
-//       type: 'line',
-//       data: {
-//         labels: ["red", "blue", "yellow", "green", "purple", "orange"],
-//         datasets: [
-//           {
-//             label: 'Glucose Level',
-//             data: [1, 2, 3, 4, 5, 6],
-//             backgroundColor: [
-//               'rgba(255, 99, 132, 0.2)',
-//               'rgba(54, 162, 235, 0.2)',
-//               'rgba(255, 206, 86, 0.2)',
-//               'rgba(75, 192, 192, 0.2)',
-//               'rgba(153, 102, 255, 0.2)',
-//               'rgba(255, 159, 64, 0.2)',
-//             ],
-//             borderColor: [
-//               'rgba(255, 99, 132, 1)',
-//               'rgba(54, 162, 235, 1)',
-//               'rgba(255, 206, 86, 1)',
-//               'rgba(75, 192, 192, 1)',
-//               'rgba(153, 102, 255, 1)',
-//               'rgba(255, 159, 64, 1)',
-//             ],
-//             borderWidth: 1,
-//             showLine: true,
-//             spanGaps: true
-//           },
-//         ],
-//       },
-//       options: {
-//         scales: {
-//           yAxes: [
-//             {
-//               ticks: {
-//                 beginAtZero: true,
-//               },
-//             },
-//           ],
-//         },
-//       },
-//     });
-//   },
-
-//   data() {
-//     return {
-//       xlabels: 0,
-//       ydata: 0,
-
-//     };
-//   },
-//   methods: {
-
-
-//     addData() {
-//       const value = document.getElementById('pushvalue').value;
-//       const label = document.getElementById('pushlabel').value;
-//       // this.xlabels.push(label)
-//       this.ydata.push(value)
-//       this.xlabels.push(label)
-
-
-
-//     },
-
-//   },
-// }; -->
