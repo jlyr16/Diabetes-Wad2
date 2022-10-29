@@ -66,18 +66,21 @@
     width: 60%;
     height: 60%;
     margin-top: 30px;
+
+
     /* margin: 0 auto; */
+    
 
   }
 
- @media screen and (max-width: 300px) {
+ @media (max-width: 600px) {
+
+  .chart {
+    
+    width: 400px;
+      height: 200px;
+  }
   
-    .container-fluid.chart{
-      width: 300px;
-      height: 300px;
-
-    }
-
     .form
     {
 
@@ -147,7 +150,7 @@
         data: {
           labels: [],
           datasets: [{
-            label: 'Glucose Level',
+            label: 'Glucose Level (mg/dL)',
             data: [],
             backgroundColor: [
               'rgba(255, 99, 132, 0.2)',
