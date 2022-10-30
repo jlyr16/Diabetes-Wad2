@@ -248,9 +248,9 @@
               myChart.data.labels.pop();
               myChart.update();
 
-              //remove data from local storage
-              
-          
+            //update local storage
+            localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+            localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data)); 
 
             }
 
@@ -314,7 +314,9 @@
         // myChart.data.datasets[0].data = data;
         // myChart.update();
 
-        //set interval to update chart every 5 seconds, 
+        //set interval to update chart every 5 seconds
+
+
    
 
 
