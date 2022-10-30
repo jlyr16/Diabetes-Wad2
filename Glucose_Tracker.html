@@ -200,16 +200,13 @@
                 
                 maintainAspectRatio: false,
               }
-              //display time in x axis
-              // x: {
-              //   type: 'time',
+              
             }
           }
 
         });
 
         //push data to chart
-        //cache data to local storage
         var app = new Vue({
           el: '#push',
           methods: {
@@ -239,11 +236,6 @@
               localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
               localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
             },
-
-
-            // myChart.data.datasets[0].data.push(value);
-            // myChart.data.labels.push(label);
-            // myChart.update();
 
           }
         });
@@ -286,6 +278,14 @@
             }
           }
         });
+
+        //retrieve data from local storage
+        var labels = JSON.parse(localStorage.getItem("labels"));
+        var data = JSON.parse(localStorage.getItem("data"));
+        myChart.data.labels = labels;
+        myChart.data.datasets[0].data = data;
+        myChart.update();
+
 
       </script>
 
