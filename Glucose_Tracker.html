@@ -109,7 +109,7 @@
 
     <div class="container-fluid chart">
       <canvas id="myChart"></canvas>
-      
+
     </div>
 
 
@@ -199,32 +199,46 @@
           el: '#push',
           methods: {
             addData: function () {
-              var value = document.getElementById('pushvalue').value;
-              var label = document.getElementById('pushlabel').value;
-              //split date and time
-              var date = label.split("T")[0];
-              var time = label.split("T")[1];
-              //convert time to 12 hour format
-              var hours = time.split(":")[0];
-              var minutes = time.split(":")[1];
-              var ampm = hours >= 12 ? 'pm' : 'am';
-              hours = hours % 12;
-              hours = hours ? hours : 12; // the hour '0' should be '12'
-              minutes = minutes < 10 ? '0' + minutes : minutes;
-              var strTime = hours + ':' + minutes + ' ' + ampm;
-              //concatenate date and time
-              var datetime = date + " " + strTime;
-              myChart.data.labels.push(datetime);
-              myChart.data.datasets.forEach((dataset) => {
-                dataset.data.push(value);
-              });
-              myChart.update();
+              async function addData() {
+                var value = document.getElementById('pushvalue').value;
+                var label = document.getElementById('pushlabel').value;
+                //split date and time
+                var date = label.split("T")[0];
+                var time = label.split("T")[1];
+                //convert time to 12 hour format
+                var hours = time.split(":")[0];
+                var minutes = time.split(":")[1];
+                var ampm = hours >= 12 ? 'pm' : 'am';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                var strTime = hours + ':' + minutes + ' ' + ampm;
+                //concatenate date and time
+                var datetime = date + " " + strTime;
+                myChart.data.labels.push(datetime);
+                myChart.data.datasets.forEach((dataset) => {
+                  dataset.data.push(value);
+                });
+                myChart.update();
+
+                //push data to local storage
+                localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+                localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
+              }
+              addData();
 
 
-            },
+            }
+
 
           }
         });
+
+
+
+
+
+
 
 
         //pop data from chart
@@ -235,7 +249,15 @@
               myChart.data.datasets[0].data.pop();
               myChart.data.labels.pop();
               myChart.update();
+
+              //remove data from local storage
+              
+          
+
             }
+
+
+
           }
         });
 
@@ -247,10 +269,14 @@
               myChart.data.datasets[0].data = [];
               myChart.data.labels = [];
               myChart.update();
+
+              //reset local storage
+              localStorage.clear()
+
             }
-          
+
           }
-    
+
 
         });
 
@@ -268,19 +294,38 @@
           }
         });
 
-        //cache data to local storage every few seconds
-        setInterval(function () {
-        localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
-        localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
-        }, 10);
-         
 
-        //retrieve data from local storage
+
+
+        //retrieve data from local storage and display on chart on page load 
         var labels = JSON.parse(localStorage.getItem("labels"));
         var data = JSON.parse(localStorage.getItem("data"));
-        myChart.data.labels = labels;
-        myChart.data.datasets[0].data = data;
-        myChart.update();
+        if (labels != null && data != null) {
+          myChart.data.labels = labels;
+          myChart.data.datasets[0].data = data;
+          myChart.update();
+        }
+
+        // var labels = JSON.parse(localStorage.getItem("labels"));
+        // var data = JSON.parse(localStorage.getItem("data"));
+        // myChart.data.labels = labels;
+        // myChart.data.datasets[0].data = data;
+        // myChart.update();
+
+        //set interval to update chart every 5 seconds, 
+   
+
+
+
+        // await setInterval(function () {
+        //   localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+        //   localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
+        // }, 1000);
+
+
+
+
+
 
       </script>
 
@@ -308,5 +353,3 @@ onst label = document.getElementById('pushlabel').value;
 //   //update the chart
 //   myChart.update();
 // });
-
-
