@@ -227,16 +227,15 @@
                 });
                 myChart.update();
 
+                //add data to local storage
+                localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+                localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));                
 
-            },
-
+              }
+              addData();
+            }
           }
         });
-
-
-
-
-
 
 
 
@@ -268,7 +267,14 @@
               myChart.data.datasets[0].data = [];
               myChart.data.labels = [];
               myChart.update();
+
+
+              //remove data from local storage
+              localStorage.clear();
+
             }
+
+
           
           }
 
