@@ -226,9 +226,6 @@
               });
               myChart.update();
 
-              //cache data to local storage
-              localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
-              localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
             },
 
           }
@@ -255,9 +252,16 @@
               myChart.data.datasets[0].data = [];
               myChart.data.labels = [];
               myChart.update();
+
             }
+            
+
+
           }
+    
+
         });
+
 
         //filter data
         var app = new Vue({
@@ -273,13 +277,19 @@
           }
         });
 
+        //cache data to local storage every few seconds
+        setInterval(function () {
+        localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+        localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
+        }, 10);
+         
+
         //retrieve data from local storage
         var labels = JSON.parse(localStorage.getItem("labels"));
         var data = JSON.parse(localStorage.getItem("data"));
         myChart.data.labels = labels;
         myChart.data.datasets[0].data = data;
         myChart.update();
-
 
       </script>
 
