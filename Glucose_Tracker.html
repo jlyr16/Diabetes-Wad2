@@ -114,6 +114,11 @@
 
 
 
+    
+
+
+
+
 
     <div class="form">
 
@@ -123,6 +128,7 @@
 
       <input id="pushlabel" type="datetime-local" class="form-control mb-3" placeholder="Enter Date" value="26/09/1999"
         style="font-weight: bold;" />
+
 
 
 
@@ -221,15 +227,8 @@
                 });
                 myChart.update();
 
-                //push data to local storage
-                localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
-                localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
-              }
-              addData();
 
-
-            }
-
+            },
 
           }
         });
@@ -269,16 +268,13 @@
               myChart.data.datasets[0].data = [];
               myChart.data.labels = [];
               myChart.update();
-
-              //reset local storage
-              localStorage.clear()
-
             }
-
+          
           }
 
 
         });
+
 
         //filter data
         var app = new Vue({
@@ -353,3 +349,5 @@ onst label = document.getElementById('pushlabel').value;
 //   //update the chart
 //   myChart.update();
 // });
+
+
