@@ -141,7 +141,7 @@
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-default">Date & Time</span>
         </div>
-        <input id="pushlabel" type="datetime-local" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="2021-09-26T12:00" placeholder="Enter Date" style="font-weight: bold;">
+        <input id="pushlabel" type="datetime-local" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="2021-09-1T01:05" placeholder="Enter Date" style="font-weight: bold;">
 
       </div>
 
@@ -165,12 +165,33 @@
 
       <script>
         // variable to fetch today's date and time in the format of 2021-09-26T12:00
+        
         var today = new Date();
         var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        //if the month is less than 10, add a 0 in front of it
+        if (today.getMonth() < 10) {
+          date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
+        }
+        //if the day is less than 10, add a 0 in front of it
+        if (today.getDate() < 10) {
+          date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + today.getDate();
+        }
+        //if the month and day are less than 10, add a 0 in front of them
+        if (today.getMonth() < 10 && today.getDate() < 10) {
+          date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + today.getDate();
+        }
+      
         var time = today.getHours() + ":" + today.getMinutes();
+        //if the time is less than 10, add a 0 in front of it
+        if (time[0] < 10) {
+          time = "0" + time;
+        }
+        if (time[3] < 10) {
+          time = time[0] + time[1] + ":" + 0 + time[3];
+        }
         var dateTime = date + 'T' + time;
-
-        //set the value of pushlabel to today's date
+        console.log(dateTime);
+        // //set the value of pushlabel to today's date
         document.getElementById("pushlabel").value = dateTime;
         
         // var today = new Date();
