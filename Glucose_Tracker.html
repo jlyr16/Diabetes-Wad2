@@ -19,24 +19,30 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Glucose Tracker <span class="sr-only">(current)</span></a>
+      
+
+
+        
+          <!-- <a class="nav-link" href="Glucose_Tracker.html"><b>Glucose Tracker</b> <span class="sr-only">(current)</span></a> -->
+          <a class="nav-link" href="Glucose_Tracker.html"><b style="color: green;">Glucose Tracker</b> <span class="sr-only">(current)</span></a>
+
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
 
         </li>
-        <!-- <li class="nav-item dropdown">
+        <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Dropdown
-              </a> -->
-        <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
-        <!-- <a class="dropdown-item" href="#">Action</a>
+              </a> 
+       <div class="dropdown-menu" aria-labelledby="navbarDropdown"> 
+        <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Something else here</a>
-              </div> -->
+              </div>
 
-        <!-- </li> -->
+        </li>
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
@@ -56,7 +62,7 @@
 
 <style>
   .form {
-    margin-top: 30px;
+    margin-top: 45px;
     width: 40%;
     margin-left: auto;
     margin-right: auto;
@@ -113,24 +119,33 @@
     </div>
 
 
-
-    
-
-
-
-
-
     <div class="form">
 
-      <input id="pushvalue" type="number" class="form-control mb-3" placeholder="Enter Glucose Level (mg/dL)"
+      <!-- <input id="pushvalue" type="number" class="form-control mb-3" placeholder="Enter Glucose Level (mg/dL)"
         style="font-weight: bold;" />
 
 
       <input id="pushlabel" type="datetime-local" class="form-control mb-3" placeholder="Enter Date" value="26/09/1999"
-        style="font-weight: bold;" />
+        style="font-weight: bold;" /> -->
 
 
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Glucose Level(mg/dL)</span>
+        </div>
+        <input id="pushvalue" type="number" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default" value="95" placeholder="Enter Glucose Level (mg/dL)" style="font-weight: bold;">
+      </div>
 
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Date & Time</span>
+        </div>
+        <input id="pushlabel" type="datetime-local" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="2021-09-26T12:00" placeholder="Enter Date" style="font-weight: bold;">
+
+      </div>
+
+        
 
       <div class="row">
         <div class="col">
@@ -149,13 +164,35 @@
 
 
       <script>
-        // variable to fetch today's date
+        // variable to fetch today's date and time in the format of 2021-09-26T12:00
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ":" + today.getMinutes();
+        var dateTime = date + 'T' + time;
+
+        //set the value of pushlabel to today's date
+        document.getElementById("pushlabel").value = dateTime;
+        
         // var today = new Date();
         // var dd = String(today.getDate()).padStart(2, '0');
         // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         // var yyyy = today.getFullYear();
         // today = dd + '/' + mm + '/' + yyyy;
-        // document.getElementById("pushlabel").value = today;
+        // // variable to fetch time
+        // var time = new Date();
+        // var hours = time.getHours();
+        // var minutes = time.getMinutes();
+        // var seconds = time.getSeconds();
+        // time = hours + ':' + minutes + ':' + seconds;
+        // //join date and time
+        // var date = today + ' ' + time;
+        // //set the value of the input to today's date
+        // document.getElementById("pushlabel").value = date;
+        // console.log(date);
+        // date="2022-02-26T12:00"
+        // //set the value of pushlabel to today's date
+        // document.getElementById("pushlabel").value = date;
+       
 
 
         //chart js
@@ -237,8 +274,6 @@
           }
         });
 
-
-
         //pop data from chart
         var app = new Vue({
           el: '#pop',
@@ -251,11 +286,7 @@
             //update local storage
             localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
             localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data)); 
-
             }
-
-
-
           }
         });
 
@@ -267,7 +298,6 @@
               myChart.data.datasets[0].data = [];
               myChart.data.labels = [];
               myChart.update();
-
 
               //remove data from local storage
               localStorage.clear();
@@ -283,18 +313,18 @@
 
 
         //filter data
-        var app = new Vue({
-          el: '#filter',
-          methods: {
-            filterData: function () {
-              var value = document.getElementById('filtervalue').value;
-              var label = document.getElementById('filterlabel').value;
-              myChart.data.datasets[0].data = [];
-              myChart.data.labels = [];
-              myChart.update();
-            }
-          }
-        });
+        // var app = new Vue({
+        //   el: '#filter',
+        //   methods: {
+        //     filterData: function () {
+        //       var value = document.getElementById('filtervalue').value;
+        //       var label = document.getElementById('filterlabel').value;
+        //       myChart.data.datasets[0].data = [];
+        //       myChart.data.labels = [];
+        //       myChart.update();
+        //     }
+        //   }
+        // });
 
 
 
