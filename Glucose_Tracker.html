@@ -189,8 +189,10 @@
         if (today.getMinutes() < 10) {
           time = today.getHours() + ":0" + today.getMinutes();
         }
+        if (today.getHours() < 10 && today.getMinutes() < 10) {
+          time = '0' + today.getHours() + ":0" + today.getMinutes();
+        }
 
-       
        
         var dateTime = date + 'T' + time;
         console.log(dateTime);
