@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="../project/Bootstrap/bootstrap.min.css">
+
+
+    <title>Insulin Dosage</title>
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="row nav">
+            <nav class="navbar navbar-expand-lg bg-light">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">DiaBEATes</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Calculate Insulin</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Nearest Clinics</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">My Glucose Curve</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <div class="row">
+            <div class="input-group m-2">
+                <span class="input-group-text" id="basic-addon1">Total amount of Carbohydrates taken:</span>
+                <input type="text" class="form-control" placeholder="" aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+            <!-- eatenCarb -->
+
+            <div class="input-group m-2">
+                <!-- weightOfCarbs -->
+                <span class="input-group-text" id="basic-addon1">Mass of carbohydrates taken:</span>
+                <input type="text" class="form-control" placeholder="" aria-label="Username"
+                    aria-describedby="basic-addon1">
+            </div>
+            <div class="input-group m-2">
+                <!-- targetBGL -->
+                <span class="input-group-text" id="inputGroup-sizing-default">Target Blood Glucose</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+            <div class="input-group m-2">
+                <!-- currentBGL -->
+                <span class="input-group-text" id="inputGroup-sizing-default">Current Blood Glucose</span>
+                <input type="text" class="form-control" aria-label="Sizing example input"
+                    aria-describedby="inputGroup-sizing-default">
+            </div>
+
+        </div>
+        <button type="button" class="btn btn-success mt-2" v-on:click="calculateinsulin()">Calculate my insulin</button>
+        <!--row closing-->
+
+
+
+
+
+
+
+
+
+        <script>
+            const app = Vue.createApp({
+                data() {
+                    return {
+                    }
+                    }
+                },
+
+                methods: {
+                    calculateinsulin() {
+                        var eatenCarbs = //wtv that is extracted by the 
+                        var weightOfCarbs = // weight of the food
+                        var carbInsulin = Number(eatenCarbs / weightOfCarbs)
+                
+                
+                            var targetBGL = // wtv they have set
+                        var currentBGL = // wtv they have put in
+                        var DailyReccDose = weight / 4
+                        var InsulinSensitivity = 1500 / DailyReccDose
+                        var InsulinCorrection = (currentBGL - targetBGL) / InsulinSensitivity
+                        
+                    }
+                }
+            })
+
+
+        </script>
+
+    </div> <!-- container closing-->
+    <!-- DO NOT REMOVE
+         REFERENCE TO LOCAL BOOTSTRAP JAVASCRIPT
+    -->
+    <script src="../project/Bootstrap/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+
+
+const app = Vue.createApp({
+
+    //=========== DATA PROPERTIES ===========
+    data() {
+        return {
+
+            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
+            greeting: "Hola Amigos!",
+
+            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
+            directory: [
+                {
+                    email: "frank@smu.edu.sg",
+                    category: "EDUCATION"
+                },
+                {
+                    email: "kyong@smu.edu.sg",
+                    category: "EDUCATION"
+                },
+                {
+                    email: "jennie@bpink.info",
+                    category: "OTHERS"
+                },
+                {
+                    email: "layfoo@kpop.org",
+                    category: "OTHERS"
+                }
+            ],
+
+            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
+            new_emails: "alice@smu.edu.sg, bob@gmail.com",
+
+            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
+            party_email_subject: "Year-End KBBQ Party",
+
+            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
+            party_email_message: "Dear friends! The year is ending, and it's party time! Please accept this invitation by 10 December 2021 yah? No need to bring anything except your wonderful hungry and thirsty self! Hope to see you and best wishes to you!",
+
+            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
+            party_email_addresses: [
+                "kyong@smu.edu.sg",
+                "jennie@bpink.info"
+            ]
+
+        }
+    },
+
+    //=========== METHODS ===========
+    methods: {
+
+        add_to_directory() {
+
+            // YOUR CODE GOES HERE
+            // will involve some sort of logic
+            console.log(this.new_emails)
+
+            let temp = this.new_emails.split(",") // convert strings into array separated by the character that you define)
+
+            for (let email of temp) {
+
+                let user = {}
+                user.email = ""
+                user.category = "OTHERS"
+
+                console.log(email)
+
+                email = email.trim()
+
+                user.email = email
+
+                let email_parts = email.split("@") // jackedu@gmail.com -> {'jackedu', 'gmail'}
+
+                if (email_parts[1].includes("edu")) {
+                    user.category = "EDUCATION"
+                }
+
+                this.directory.push(user)
+            }
+
+            this.directory.push(user) // add new data at head, can include how to oec 
+
+        },
+
+        // Send part invitation
+        send_party_invitation() {
+
+            // YOUR CODE GOES HERE
+            let msg = `
+            Invitation send to ${this.party_email_addresses}
+            
+            `
+
+        }
+
+    }
+})
+
+
+
+
+// DO NOT MODIFY THIS
+// ASSOCIATING the current Vue app to an HTML element with id='app'
+app.mount('#app')
