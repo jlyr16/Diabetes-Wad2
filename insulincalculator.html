@@ -25,44 +25,40 @@
     <title>Insulin Dosage</title>
   </head>
 
+  <nav class="navbar navbar-expand-lg  navbar-light bg-light">
+    <a class="navbar-brand" href="home.html"> DiaBEATes
+      <img src=https://cdn-icons-png.flaticon.com/512/5873/5873194.png width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+    </a>
+
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+
+            <li class="nav-item">
+                <a class="nav-link" href="Glucose_Tracker.html">Glucose Tracker </span></a>
+            </li>
+           
+            <li class="nav-item active">
+                <a class="nav-link" href=insulincalculator.htmll"><b style="color: #fc4903;">Insulin Calculator</b> <span class="sr-only">(current)</span></a>
+
+            </li>
+           
+                
+
+           
+        </ul>
+      
+    </div>
+</nav>
+
   <body>
     <div class="container">
-      <div class="row nav">
-        <nav class="navbar navbar-expand-lg bg-light">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">DiaBEATes</a>
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarNav"
-              aria-controls="navbarNav"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#"
-                    >Home</a
-                  >
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Calculate Insulin</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Nearest Clinics</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">My Glucose Curve</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
 
       <div class="row">
         <div class="input-group m-2">
@@ -156,11 +152,10 @@
     <!-- DO NOT REMOVE
          REFERENCE TO LOCAL BOOTSTRAP JAVASCRIPT
     -->
-   
   </body>
 </html>
 
-const app = Vue.createApp({ //=========== DATA PROPERTIES =========== data() {
+<!-- const app = Vue.createApp({ //=========== DATA PROPERTIES =========== data() {
 return { // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE greeting: "Hola
 Amigos!", // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE directory: [ {
 email: "frank@smu.edu.sg", category: "EDUCATION" }, { email: "kyong@smu.edu.sg",
@@ -185,4 +180,4 @@ this.directory.push(user) } this.directory.push(user) // add new data at head,
 can include how to oec }, // Send part invitation send_party_invitation() { //
 YOUR CODE GOES HERE let msg = ` Invitation send to ${this.party_email_addresses}
 ` } } }) // DO NOT MODIFY THIS // ASSOCIATING the current Vue app to an HTML
-element with id='app' app.mount('#app')
+element with id='app' app.mount('#app') -->
