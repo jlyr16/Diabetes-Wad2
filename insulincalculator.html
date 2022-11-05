@@ -44,10 +44,23 @@
                 <a class="nav-link" href="Glucose_Tracker.html">Glucose Tracker </span></a>
             </li>
            
-            <li class="nav-item active">
-                <a class="nav-link" href=insulincalculator.htmll"><b style="color: #fc4903;">Insulin Calculator</b> <span class="sr-only">(current)</span></a>
-
+         
+            <li class="nav-item">
+              <a class="nav-link" href="insulincalculator.html">Nearby Clinics</a>
+    
             </li>
+           
+
+            <li class="nav-item">
+              <a class="nav-link" href="insulincalculator.html">Healthy Menu</a>
+    
+            </li>
+       
+            <li class="nav-item active">
+              <a class="nav-link" href=#body><b style="color: #fc4903;">Insulin Calculator</b> <span class="sr-only">(current)</span></a>
+
+          </li>
+
            
                 
 
@@ -119,9 +132,14 @@
         v-on:click="calculateinsulin()"
       >
         Calculate my insulin
+
       </button>
+
+    
       <!--row closing-->
 
+      </body>
+      
       <script>
         const app = Vue.createApp({
             data() {
@@ -131,7 +149,7 @@
             },
 
             methods: {
-                calculateinsulin() {
+              calculateinsulin() {
                     var eatenCarbs = //wtv that is extracted by the
                     var weightOfCarbs = // weight of the food
                     var carbInsulin = Number(eatenCarbs / weightOfCarbs)
@@ -142,10 +160,27 @@
                     var DailyReccDose = weight / 4
                     var InsulinSensitivity = 1500 / DailyReccDose
                     var InsulinCorrection = (currentBGL - targetBGL) / InsulinSensitivity
-
+                   
                 }
             }
-        })
+        )
+
+
+
+       
+        app.mount('#app')
+
+        
+        // app.mount('#app')
+
+        // calculateinsulin() {
+        //             var eatenCarb = document.getElementById("eatenCarb").value;
+        //             var weightOfCarbs = document.getElementById("weightOfCarbs").value;
+        //             var targetBGL = document.getElementById("targetBGL").value;
+        //             var currentBGL = document.getElementById("currentBGL").value;
+        //             var insulin = (eatenCarb / weightOfCarbs) * (targetBGL - currentBGL) / 180;
+        //             document.getElementById("insulin").innerHTML = insulin;
+
       </script>
     </div>
     <!-- container closing-->
