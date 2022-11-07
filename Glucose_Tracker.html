@@ -62,7 +62,7 @@
 
 <style>
   .form {
-    margin-top: 45px;
+    margin-top: 15px;
     width: 40%;
     margin-left: auto;
     margin-right: auto;
@@ -82,10 +82,6 @@
     margin-top: auto;
     margin-bottom: auto;
     width: 40%;
-
-
-
-
   }
 
   @media (max-width: 600px) {
@@ -116,19 +112,111 @@
     <div class="container-fluid chart">
       <canvas id="myChart"></canvas>
 
+     
+      <!-- <div class="filter">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Filter</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Week</option>
+            <option>Month</option>
+            <option>Year</option>
+          </select> -->
+        </div>
+
+        <!-- <div class="row" style="">
+          <div class="col" style="margin-left: auto; margin-right:auto;">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Filter
+            </button>
+          </div> -->
+
+          <div class="row">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal"  style="margin-left: auto; margin-right:auto; margin-top:25px; background-color:#fc4903; border:black;">
+              <b>Filter Dates</b>
+            </button>
+          
+      </div>
+
+<!-- 
+      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Filter Dates</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Start Date:</label>
+                  <input type="date" class="form-control" id="recipient-name">
+                </div>
+              </form>
+              </div>
+              </div>  
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        -->
+
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Filter Dates</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Start Date:</label>
+                    <input type="date" class="form-control" id="startDate">
+                    <label for="recipient-name" class="col-form-label">End Date:</label>
+                    <input type="date" class="form-control" id="endDate">
+                  </div>
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id=filter type="button" class="btn btn-primary" @click="filterData">Filter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+<!-- <div class="container-fluid" style="width: 100%; margin-left: auto; margin-right:auto;">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Filter
+      </button>
     </div>
+  </div>
+</div> -->
+
+<!-- <div class="container-fluid" style="width: 100%; margin-left: auto; margin-right:auto;">
+  <div class="row">
+    <div class="col" style="margin-left: auto; margin-right:auto;">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Filter
+      </button>
+    </div>
+  </div> -->
 
 
-    <div class="form">
 
-      <!-- <input id="pushvalue" type="number" class="form-control mb-3" placeholder="Enter Glucose Level (mg/dL)"
-        style="font-weight: bold;" />
+<div class="form">
 
-
-      <input id="pushlabel" type="datetime-local" class="form-control mb-3" placeholder="Enter Date" value="26/09/1999"
-        style="font-weight: bold;" /> -->
-
-
+  
       <div class="input-group mb-3">
         <div class="input-group-prepend">
           <span class="input-group-text" id="inputGroup-sizing-default">Glucose Level(mg/dL)</span>
@@ -158,7 +246,9 @@
           <button id="reset" class="btn btn-warning btn-sm w-100" @click="resetData">Reset</button>
         </div>
 
+
       </div>
+      </div>  
 
 
 
@@ -343,15 +433,62 @@
         });
 
 
-        //filter data
+        // filter data
         // var app = new Vue({
         //   el: '#filter',
         //   methods: {
         //     filterData: function () {
-        //       var value = document.getElementById('filtervalue').value;
-        //       var label = document.getElementById('filterlabel').value;
-        //       myChart.data.datasets[0].data = [];
-        //       myChart.data.labels = [];
+        //       var filter = document.getElementById('filter').value;
+        //       var filteredData = [];
+        //       var filteredLabels = [];
+        //       var data = myChart.data.datasets[0].data;
+        //       var labels = myChart.data.labels;
+        //       for (var i = 0; i < data.length; i++) {
+        //         if (data[i] > filter) {
+        //           filteredData.push(data[i]);
+        //           filteredLabels.push(labels[i]);
+        //         }
+        //       }
+        //       myChart.data.datasets[0].data = filteredData;
+        //       myChart.data.labels = filteredLabels;
+        //       myChart.update();
+        //     }
+        //   }
+        // });
+        var app = new Vue({
+          el: '#filter',
+          methods: {
+            filterData: function () {
+              var value = document.getElementById('startDate').value;
+              var label = document.getElementById('endDate').value;
+              var filteredData = [];
+              var filteredLabels = [];
+              console.log(filteredData);
+              var data = myChart.data.datasets[0].data;
+              var labels = myChart.data.labels;
+              for (var i = 0; i < data.length; i++) {
+                if (labels[i] >= value && labels[i] <= label) {
+                  filteredData.push(data[i]);
+                  filteredLabels.push(labels[i]);
+                }
+              }
+              myChart.data.datasets[0].data = filteredData;
+              myChart.data.labels = filteredLabels;
+              myChart.update();
+              console.log("helloword");
+            }
+          }
+        });
+
+
+
+        //change chart type
+        // var app = new Vue({
+        //   el: '#charttype',
+        //   methods: {
+        //     changeChartType: function () {
+        //       var value = document.getElementById('charttypevalue').value;
+        //       myChart.config.type = value;
         //       myChart.update();
         //     }
         //   }
@@ -420,3 +557,12 @@ onst label = document.getElementById('pushlabel').value;
 // });
 
 
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Chart
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Line Chart</a>
+          <a class="dropdown-item" href="#">Bar Chart</a>
+          <a class="dropdown-item" href="#">Pie Chart</a>
+        </div> -->
