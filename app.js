@@ -2,7 +2,7 @@
 
 let map, infoWindow;
 
-function initMap() {
+window.onload = function initMap() {
   // The location of Singapore
   const singapore = { lat: 1.3521, lng: 103.8198 };
   // The map, centered at Singapore
