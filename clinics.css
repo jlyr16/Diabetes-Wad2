@@ -12,14 +12,16 @@ body {
   background-color: #fff;
   border: 0;
   border-radius: 2px;
-  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 4px -1px rgba(0, 0, 0, 0.3);
   margin: 10px;
   padding: 0 0.5em;
   font: 400 18px Roboto, Arial, sans-serif;
   overflow: hidden;
   height: 40px;
   cursor: pointer;
-  width: 12%;
+  width: 8%;
+  position: relative;
+  font-weight: 450;
 }
 
 .custom-map-control-button:hover {
@@ -30,13 +32,14 @@ body {
   background-color: #fff;
   border: 0;
   border-radius: 2px;
-  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 4px -1px rgba(0, 0, 0, 0.3);
   margin: 10px;
   padding: 0 0.5em;
   height: 40px;
   width: 15%;
   font: 400 18px Roboto, Arial, sans-serif;
   overflow: hidden;
+  position: relative;
 }
 
 .table-root {
