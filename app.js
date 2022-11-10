@@ -105,10 +105,6 @@ var marker = new google.maps.Marker({
         ].join(' ');
     }
 
-    var link = 
-    // <a href="url">link text</a>
-    // <a href="https://www.w3schools.com/" target="_blank">Visit W3Schools!</a>
-
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br><a target="_blank" href="' + place.url + '">' + "Get directions on Google Maps" + '</a>' + '</div>');
     infowindow.open(map, marker);
   
