@@ -30,10 +30,10 @@ window.onload = function initMap() {
             lng: position.coords.longitude,
           };
 
-          var marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-          });
+          // var marker = new google.maps.Marker({
+          //   position: pos,
+          //   map: map,
+          // });
 
 
           map.setCenter(pos);
@@ -104,10 +104,6 @@ var marker = new google.maps.Marker({
           (place.address_components[2] && place.address_components[2].short_name || '')
         ].join(' ');
     }
-
-    var link = 
-    // <a href="url">link text</a>
-    // <a href="https://www.w3schools.com/" target="_blank">Visit W3Schools!</a>
 
     infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br><a target="_blank" href="' + place.url + '">' + "Get directions on Google Maps" + '</a>' + '</div>');
     infowindow.open(map, marker);
