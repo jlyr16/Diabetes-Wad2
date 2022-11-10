@@ -51,7 +51,6 @@ window.onload = function initMap() {
 
 
 
-
 // Autocomplete search 
 
 var input = document.getElementById('searchInput');
@@ -86,13 +85,13 @@ var marker = new google.maps.Marker({
         map.setCenter(place.geometry.location);
         map.setZoom(20);
     }
-    // marker.setIcon(({
-    //     url: place,
-    //     size: new google.maps.Size(71, 71),
-    //     origin: new google.maps.Point(0, 0),
-    //     anchor: new google.maps.Point(17, 34),
-    //     scaledSize: new google.maps.Size(35, 35)
-    // }));
+    marker.setIcon(({
+        // url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(35, 35)
+    }));
     
     marker.setPosition(place.geometry.location);
     marker.setVisible(true);
@@ -106,7 +105,11 @@ var marker = new google.maps.Marker({
         ].join(' ');
     }
 
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+    var link = 
+    // <a href="url">link text</a>
+    // <a href="https://www.w3schools.com/" target="_blank">Visit W3Schools!</a>
+
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br><a href="' + place.url + '">' + "Get directions on Google Maps" + '</a>' + '</div>');
     infowindow.open(map, marker);
   
     // Location details
