@@ -30,10 +30,10 @@ window.onload = function initMap() {
             lng: position.coords.longitude,
           };
 
-          var marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-          });
+          // var marker = new google.maps.Marker({
+          //   position: pos,
+          //   map: map,
+          // });
 
 
           map.setCenter(pos);
