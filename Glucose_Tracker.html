@@ -6,45 +6,53 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <!-- <a class="navbar-brand" href="">DiaBEATes</a> -->
-    <a class="navbar-brand" href="home.html">DiaBEATes</a>
+  <link rel="icon" type="image/x-icon" href="images/favicon.ico">
 
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    
+  
+    <nav class="navbar navbar-expand-lg  navbar-light bg-light">
+      <a class="navbar-brand" href="home.html"> DiaBEATes
+        <img src=https://cdn-icons-png.flaticon.com/512/5873/5873194.png width="30" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+      </a>
+        
+      
+    
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
+
     </button>
 
+      
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Glucose Tracker <span class="sr-only">(current)</span></a>
+      
+          <a class="nav-link" href="Glucose_Tracker.html"><b style="color: #fc4903;">Glucose Tracker</b> <span class="sr-only">(current)</span></a>
+ 
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="nearby_clinics.html">Nearby Clinics</a>
 
         </li>
-        <!-- <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown
-              </a> -->
-        <!-- <div class="dropdown-menu" aria-labelledby="navbarDropdown"> -->
-        <!-- <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div> -->
-
-        <!-- </li> -->
         <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
+          <a class="nav-link" href="insulincalculator.html">Healthy Menu</a>
+
         </li>
+      <li class="nav-item">
+          <a class="nav-link" href="insulincalculator.html">Insulin Calculator</a>
+
+        </li>
+        
+      
       </ul>
-      <form class="form-inline my-2 my-lg-0">
+      <!-- <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form>
+      </form> -->
     </div>
   </nav>
 
@@ -56,7 +64,7 @@
 
 <style>
   .form {
-    margin-top: 30px;
+    margin-top: 15px;
     width: 40%;
     margin-left: auto;
     margin-right: auto;
@@ -75,10 +83,7 @@
     margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
-
-   
-
-
+    width: 40%;
   }
 
   @media (max-width: 600px) {
@@ -89,11 +94,9 @@
     }
 
     .form {
-
       width: 100%;
     }
   }
-
 </style>
 
 
@@ -109,35 +112,129 @@
 
     <div class="container-fluid chart">
       <canvas id="myChart"></canvas>
+
+     
+      <!-- <div class="filter">
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Filter</label>
+          <select class="form-control" id="exampleFormControlSelect1">
+            <option>Week</option>
+            <option>Month</option>
+            <option>Year</option>
+          </select> -->
+        </div>
+
+        <!-- <div class="row" style="">
+          <div class="col" style="margin-left: auto; margin-right:auto;">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Filter
+            </button>
+          </div> -->
+
+          <div class="row">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal"  style="margin-left: auto; margin-right:auto; margin-top:25px; background-color:#fc4903; border:black;">
+              <b>Filter Dates</b>
+            </button>
+          
+      </div>
+
+<!-- 
+      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Filter Dates</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="recipient-name" class="col-form-label">Start Date:</label>
+                  <input type="date" class="form-control" id="recipient-name">
+                </div>
+              </form>
+              </div>
+              </div>  
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+              </div>
+            </div>
+          </div>
+        -->
+
+        <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Filter Dates</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form>
+                  <div class="form-group">
+                    <label for="recipient-name" class="col-form-label">Start Date:</label>
+                    <input type="date" class="form-control" id="startDate">
+                    <label for="recipient-name" class="col-form-label">End Date:</label>
+                    <input type="date" class="form-control" id="endDate">
+                  </div>
+                </form>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id=filter type="button" class="btn btn-primary" @click="filterData">Filter</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+<!-- <div class="container-fluid" style="width: 100%; margin-left: auto; margin-right:auto;">
+  <div class="row">
+    <div class="col">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Filter
+      </button>
     </div>
+  </div>
+</div> -->
 
-    
-    <!-- <div class="filter">
-      <form class="form">
-        <div class="form-group">
-          <label for="startdate">Start Date</label>
-         <input type="date" class="form-control" id="startdate" placeholder="Start Date">
+<!-- <div class="container-fluid" style="width: 100%; margin-left: auto; margin-right:auto;">
+  <div class="row">
+    <div class="col" style="margin-left: auto; margin-right:auto;">
+      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Filter
+      </button>
+    </div>
+  </div> -->
+
+
+
+<div class="form">
+
+  
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Glucose Level(mg/dL)</span>
         </div>
-        <div class="form-group">
-          <label for="enddate">End Date</label>
-          <input type="date" class="form-control" id="enddate" placeholder="End Date">
+        <input id="pushvalue" type="number" class="form-control" aria-label="Sizing example input"
+          aria-describedby="inputGroup-sizing-default" value="95" placeholder="Enter Glucose Level (mg/dL)" style="font-weight: bold;">
+      </div>
+
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Date & Time</span>
         </div>
-     -->
+        <input id="pushlabel" type="datetime-local" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default" value="2021-09-1T01:05" placeholder="Enter Date" style="font-weight: bold;">
 
+      </div>
 
-
-
-    <div class="form">
-
-      <input id="pushvalue" type="number" class="form-control mb-3" placeholder="Enter Glucose Level (mg/dL)"
-        style="font-weight: bold;" />
-
-
-      <input id="pushlabel" type="datetime-local" class="form-control mb-3" placeholder="Enter Date" value="26/09/1999"
-        style="font-weight: bold;" />
-
-
-
+        
 
       <div class="row">
         <div class="col">
@@ -150,19 +247,69 @@
           <button id="reset" class="btn btn-warning btn-sm w-100" @click="resetData">Reset</button>
         </div>
 
+
       </div>
+      </div>  
 
 
 
 
       <script>
-        // variable to fetch today's date
+        // variable to fetch today's date and time in the format of 2021-09-26T12:00
+        
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        //if the month is less than 10, add a 0 in front of it
+        if (today.getMonth() < 10) {
+          date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-' + today.getDate();
+        }
+        //if the day is less than 10, add a 0 in front of it
+        if (today.getDate() < 10) {
+          date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-0' + today.getDate();
+        }
+        //if the month and day are less than 10, add a 0 in front of them
+        if (today.getMonth() < 10 && today.getDate() < 10) {
+          date = today.getFullYear() + '-0' + (today.getMonth() + 1) + '-0' + today.getDate();
+        }
+      
+        var time = today.getHours() + ":" + today.getMinutes();
+        //if the time is less than 10, add a 0 in front of it
+        if (today.getHours() < 10) {
+          time = '0' + today.getHours() + ":" + today.getMinutes();
+        }
+        if (today.getMinutes() < 10) {
+          time = today.getHours() + ":0" + today.getMinutes();
+        }
+        if (today.getHours() < 10 && today.getMinutes() < 10) {
+          time = '0' + today.getHours() + ":0" + today.getMinutes();
+        }
+
+       
+        var dateTime = date + 'T' + time;
+        console.log(dateTime);
+        // //set the value of pushlabel to today's date
+        document.getElementById("pushlabel").value = dateTime;
+        
         // var today = new Date();
         // var dd = String(today.getDate()).padStart(2, '0');
         // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         // var yyyy = today.getFullYear();
         // today = dd + '/' + mm + '/' + yyyy;
-        // document.getElementById("pushlabel").value = today;
+        // // variable to fetch time
+        // var time = new Date();
+        // var hours = time.getHours();
+        // var minutes = time.getMinutes();
+        // var seconds = time.getSeconds();
+        // time = hours + ':' + minutes + ':' + seconds;
+        // //join date and time
+        // var date = today + ' ' + time;
+        // //set the value of the input to today's date
+        // document.getElementById("pushlabel").value = date;
+        // console.log(date);
+        // date="2022-02-26T12:00"
+        // //set the value of pushlabel to today's date
+        // document.getElementById("pushlabel").value = date;
+       
 
 
         //chart js
@@ -198,12 +345,13 @@
           options: {
             scales: {
               y: {
-                beginAtZero: true,
+
                 maintainAspectRatio: false,
+               
+                suggestedMin: 70,
+                suggestedMax: 160,
               }
-              //display time in x axis
-              // x: {
-              //   type: 'time',
+
             }
           }
 
@@ -214,31 +362,36 @@
           el: '#push',
           methods: {
             addData: function () {
-              var value = document.getElementById('pushvalue').value;
-              var label = document.getElementById('pushlabel').value;
-              //split date and time
-              var date = label.split("T")[0];
-              var time = label.split("T")[1];
-              //convert time to 12 hour format
-              var hours = time.split(":")[0];
-              var minutes = time.split(":")[1];
-              var ampm = hours >= 12 ? 'pm' : 'am';
-              hours = hours % 12;
-              hours = hours ? hours : 12; // the hour '0' should be '12'
-              minutes = minutes < 10 ? '0' + minutes : minutes;
-              var strTime = hours + ':' + minutes + ' ' + ampm;
-              //concatenate date and time
-              var datetime = date + " " + strTime;
-              myChart.data.labels.push(datetime);
-              myChart.data.datasets.forEach((dataset) => {
-                dataset.data.push(value);
-              });
-              myChart.update();
+              async function addData() {
+                var value = document.getElementById('pushvalue').value;
+                var label = document.getElementById('pushlabel').value;
+                //split date and time
+                var date = label.split("T")[0];
+                var time = label.split("T")[1];
+                //convert time to 12 hour format
+                var hours = time.split(":")[0];
+                var minutes = time.split(":")[1];
+                var ampm = hours >= 12 ? 'pm' : 'am';
+                hours = hours % 12;
+                hours = hours ? hours : 12; // the hour '0' should be '12'
+                minutes = minutes < 10 ? '' + minutes : minutes;
+                //remove seconds
+                
+                var strTime = hours + ':' + minutes + ' ' + ampm;
+                //concatenate date and time
+                var datetime = date + " " + strTime;
+                myChart.data.labels.push(datetime);
+                myChart.data.datasets.forEach((dataset) => {
+                  dataset.data.push(value);
+                });
+                myChart.update();
 
-              // myChart.data.datasets[0].data.push(value);
-              // myChart.data.labels.push(label);
-              // myChart.update();
+                //add data to local storage
+                localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+                localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));                
 
+              }
+              addData();
             }
           }
         });
@@ -251,6 +404,10 @@
               myChart.data.datasets[0].data.pop();
               myChart.data.labels.pop();
               myChart.update();
+
+            //update local storage
+            localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+            localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data)); 
             }
           }
         });
@@ -263,27 +420,110 @@
               myChart.data.datasets[0].data = [];
               myChart.data.labels = [];
               myChart.update();
+
+              //remove data from local storage
+              localStorage.clear();
+
             }
+
+
+          
           }
+
+
         });
 
-        //filter data
+
+        // filter data
+        // var app = new Vue({
+        //   el: '#filter',
+        //   methods: {
+        //     filterData: function () {
+        //       var filter = document.getElementById('filter').value;
+        //       var filteredData = [];
+        //       var filteredLabels = [];
+        //       var data = myChart.data.datasets[0].data;
+        //       var labels = myChart.data.labels;
+        //       for (var i = 0; i < data.length; i++) {
+        //         if (data[i] > filter) {
+        //           filteredData.push(data[i]);
+        //           filteredLabels.push(labels[i]);
+        //         }
+        //       }
+        //       myChart.data.datasets[0].data = filteredData;
+        //       myChart.data.labels = filteredLabels;
+        //       myChart.update();
+        //     }
+        //   }
+        // });
         var app = new Vue({
           el: '#filter',
           methods: {
             filterData: function () {
-              var value = document.getElementById('filtervalue').value;
-              var label = document.getElementById('filterlabel').value;
-              myChart.data.datasets[0].data = [];
-              myChart.data.labels = [];
+              var value = document.getElementById('startDate').value;
+              var label = document.getElementById('endDate').value;
+              var filteredData = [];
+              var filteredLabels = [];
+              console.log(filteredData);
+              var data = myChart.data.datasets[0].data;
+              var labels = myChart.data.labels;
+              for (var i = 0; i < data.length; i++) {
+                if (labels[i] >= value && labels[i] <= label) {
+                  filteredData.push(data[i]);
+                  filteredLabels.push(labels[i]);
+                }
+              }
+              myChart.data.datasets[0].data = filteredData;
+              myChart.data.labels = filteredLabels;
               myChart.update();
+              console.log("helloword");
             }
           }
         });
 
 
 
+        //change chart type
+        // var app = new Vue({
+        //   el: '#charttype',
+        //   methods: {
+        //     changeChartType: function () {
+        //       var value = document.getElementById('charttypevalue').value;
+        //       myChart.config.type = value;
+        //       myChart.update();
+        //     }
+        //   }
+        // });
 
+
+
+
+        //retrieve data from local storage and display on chart on page load 
+        var labels = JSON.parse(localStorage.getItem("labels"));
+        var data = JSON.parse(localStorage.getItem("data"));
+        if (labels != null && data != null) {
+          myChart.data.labels = labels;
+          myChart.data.datasets[0].data = data;
+          myChart.update();
+        }
+
+        // var labels = JSON.parse(localStorage.getItem("labels"));
+        // var data = JSON.parse(localStorage.getItem("data"));
+        // myChart.data.labels = labels;
+        // myChart.data.datasets[0].data = data;
+        // myChart.update();
+
+        //set interval to update chart every 5 seconds
+
+
+   
+
+
+
+        // await setInterval(function () {
+        //   localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
+        //   localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
+        // }, 1000);
 
 
 
@@ -318,89 +558,12 @@ onst label = document.getElementById('pushlabel').value;
 // });
 
 
-
-// push.addEventListener('click', pushValueChart);
-
-// function pushValueChart(){
-// const pushValue = document.getElementById('pushvalue');
-// const pushLabel = document.getElementById('pushlabel');
-// myChart.data.datasets[0].data.push(pushValue.value);
-// myChart.data.labels.push(pushlabel.value);
-// myChart.update(); -->
-
-
-<!-- // const xlabels = [];
-// const ydata = [];
-
-// export default {
-//   name: 'glucoseGraph',
-
-//   mounted() {
-//     const ctx = document.getElementById('myChart');
-//     const myChart = new Chart(ctx, {
-//       type: 'line',
-//       data: {
-//         labels: ["red", "blue", "yellow", "green", "purple", "orange"],
-//         datasets: [
-//           {
-//             label: 'Glucose Level',
-//             data: [1, 2, 3, 4, 5, 6],
-//             backgroundColor: [
-//               'rgba(255, 99, 132, 0.2)',
-//               'rgba(54, 162, 235, 0.2)',
-//               'rgba(255, 206, 86, 0.2)',
-//               'rgba(75, 192, 192, 0.2)',
-//               'rgba(153, 102, 255, 0.2)',
-//               'rgba(255, 159, 64, 0.2)',
-//             ],
-//             borderColor: [
-//               'rgba(255, 99, 132, 1)',
-//               'rgba(54, 162, 235, 1)',
-//               'rgba(255, 206, 86, 1)',
-//               'rgba(75, 192, 192, 1)',
-//               'rgba(153, 102, 255, 1)',
-//               'rgba(255, 159, 64, 1)',
-//             ],
-//             borderWidth: 1,
-//             showLine: true,
-//             spanGaps: true
-//           },
-//         ],
-//       },
-//       options: {
-//         scales: {
-//           yAxes: [
-//             {
-//               ticks: {
-//                 beginAtZero: true,
-//               },
-//             },
-//           ],
-//         },
-//       },
-//     });
-//   },
-
-//   data() {
-//     return {
-//       xlabels: 0,
-//       ydata: 0,
-
-//     };
-//   },
-//   methods: {
-
-
-//     addData() {
-//       const value = document.getElementById('pushvalue').value;
-//       const label = document.getElementById('pushlabel').value;
-//       // this.xlabels.push(label)
-//       this.ydata.push(value)
-//       this.xlabels.push(label)
-
-
-
-//     },
-
-//   },
-// }; -->
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Select Chart
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item" href="#">Line Chart</a>
+          <a class="dropdown-item" href="#">Bar Chart</a>
+          <a class="dropdown-item" href="#">Pie Chart</a>
+        </div> -->
