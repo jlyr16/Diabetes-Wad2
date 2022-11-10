@@ -30,12 +30,6 @@ window.onload = function initMap() {
             lng: position.coords.longitude,
           };
 
-          // var marker = new google.maps.Marker({
-          //   position: pos,
-          //   map: map,
-          // });
-
-
           map.setCenter(pos);
           map.setZoom(18);
         },
@@ -86,7 +80,7 @@ var marker = new google.maps.Marker({
         map.setZoom(20);
     }
     marker.setIcon(({
-        // url: place.icon,
+        url: place.icon,
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
