@@ -2,6 +2,7 @@ const APP_ID = "788499ba";
 const APP_KEY = "7f4f98dffe8f38aba786c8a08271185f";
 
 let searchButton = document.querySelector("#search")
+var queryAPI = document.getElementById('input')
 
 //Add an event listener to the button that runs the function sendApiRequest when it is clicked
 searchButton.addEventListener("click", ()=>{
@@ -14,7 +15,8 @@ searchButton.addEventListener("click", ()=>{
 
 //An asynchronous function to fetch data from the API.
 async function sendApiRequest(){
-    const recipeURL = 'https://api.edamam.com/search?app_id=788499ba&app_key=7f4f98dffe8f38aba786c8a08271185f&q=healthy'
+    const recipeURL = 'https://api.edamam.com/search?app_id=788499ba&app_key=7f4f98dffe8f38aba786c8a08271185f&q=' + queryAPI.value
+    console.log(recipeURL)
     const response = await fetch(recipeURL);
     console.log(response)
     let data = await response.json()
