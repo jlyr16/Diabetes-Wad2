@@ -23,7 +23,7 @@
 
     <script src="https://unpkg.com/vue@next"></script>
 
-    <script src="./vue.global.js"></script>
+
 
     <div id="app">
         <div class="container-fluid">
@@ -44,13 +44,13 @@
 
                     <h4 class="mb-3">Insulin Calculator</h4>
 
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" onsubmit="return false">
 
                         <div class="row g-3">
 
                             <div class="col-12">
                                 <label for="rice" class="form-label">How much carbs did you have?</label>
-                                <select class="form-select" id="rice" required v-model="rice">
+                                <select class="form-select" id="rice" required>
                                     <option value="">Choose...</option>
                                     <option value="0.26">1/2 cup (100 grams)</option>
                                     <option value="0.13">1/4 cup (50 grams)</option>
@@ -59,21 +59,18 @@
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="firstName" class="form-label">Current Blood Glucose</label>
-                                <input type="text" class="form-control" id="currentBGL" placeholder=""
-                                    v-model="currentBGL" required>
+                                <label for="firstName" class="form-label">Current Blood Glucose (mg/dL)</label>
+                                <input type="text" class="form-control" id="currentBGL" placeholder="" required>
                             </div>
 
                             <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Target Blood Glucose</label>
-                                <input type="text" class="form-control" id="targetBGL" placeholder=""
-                                    v-model="targetBGL" required>
+                                <label for="lastName" class="form-label">Target Blood Glucose (mg/dL)</label>
+                                <input type="text" class="form-control" id="targetBGL" placeholder="" required>
                             </div>
 
                         </div>
-                        <button class="w-100 btn btn-primary btn-lg mt-3" type="submit" v-on:click="calculate">Calculate
-                            my insulin</button>
-                        <h2 id="results">You will need: {{result}} units!</h2>
+                        <button class="w-100 btn btn-primary btn-lg mt-3" onclick="work()">Calculate my insulin</button>
+                        <h2 id="results"></h2>
 
                     </form>
 
@@ -84,28 +81,22 @@
                 <!-- YOUR HISTORY -->
                 <div class="col-md-6 col-lg-4 p-3 bg-light order-md-last">
 
-                    <!-- h4 cart -->
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
-                        <span class="text-black">Your history</span>
-                        <!-- <span class="badge bg-warning rounded-pill text-dark">3</span> -->
+                        <span class="text-black">Insulin Chart</span>
                     </h4>
 
-                    <!-- cart and items ul -->
-                    <div v-for="item in directory" v-for="item in directory">
-                        <ul class="list-group mb-3">
-                            <li class="list-group-item d-flex justify-content-between lh-sm">
-                                <div>
-                                    <h6 class="my-0">{{ item.date }}</h6>
-                                    <small class="text-muted">{{ item.timing }}</small>
-                                </div>
-                                <span class="text-muted">{{ item.dosage }}</span>
-                            </li>
-
-                        </ul>
+                    <div>
+                        <img src="./images/blood-sugar-levels-target-range-table.jpg" class="img-fluid" alt="Responsive image">
                     </div>
 
-                    <button class="w-100 btn btn-primary btn-lg mt-3" type="submit" v-on:click="add_to_history">Remember
-                        my intake</button>
+                    <h4 class="d-flex justify-content-between align-items-center my-3">
+                        <span class="text-black">Information to record:</span>
+                    </h4>
+
+                    <h5>Date: <span id="date"></span></h5>
+                    <h5>Time: <span id="time"></span></h5>
+                    <h5>Meal: <span id="meal"></span></h5>
+                    <h5>Insulin: <span id="insulin"></span></h5>
                 </div>
 
             </div>
@@ -116,13 +107,8 @@
 
 
     <script>
+        
         console.log("running")
-        // let rice_insulin = document.getElementById("rice")
-        // let target_insulin = document.getElementById("currentBGL") - document.getElementById("targetBGL")
-        // let total_insulin = rice_insulin + target_insulin
-        // result = total_insulin
-        // console.log(target_insulin)
-
 
         function greetings() {
             console.log("greetings running");
@@ -132,248 +118,54 @@
 
             if ((time < 7) && (time > 21)) {
                 document.getElementById("greet").innerHTML = "<h2>You should not be eating!!</h2>";
+                document.getElementById("meal").innerHTML = "No eating now!!";
             }
             else if ((time >= 7) && (time < 12)) {
                 document.getElementById("greet").innerHTML = "<h2>Breakfast time! Let's see how much insulin you would need!</h2>";
+                document.getElementById("meal").innerHTML = "Breakfast";
             }
             else if ((time >= 12) && (time < 17)) {
                 document.getElementById("greet").innerHTML = "<h2>Wow it's lunch! Let's see how much insulin you would need!</h2>";
+                document.getElementById("meal").innerHTML = "Lunch";
             }
             else if ((time >= 17) && (time <= 21)) {
                 document.getElementById("greet").innerHTML = "<h2>Dinner! Last meal of the day, let's see how much insulin we need!</h2>";
+                document.getElementById("meal").innerHTML = "Dinner";
             }
+
+
+            const full_date = new Date();
+            let date = full_date.getDate()
+            let month = full_date.getMonth() + 1
+            let year = full_date.getFullYear()
+            let hours = full_date.getHours()
+            let minutes = full_date.getMinutes()
+
+
+            let new_date = [date, month, year].join('/')
+            let new_timing = [hours, minutes].join(":")
+            console.log(new_date)
+            console.log(new_timing)
+            document.getElementById("date").innerHTML = String(new_date)
+            document.getElementById("time").innerHTML = String(new_timing)
         }
 
-        function calculateinsulin() {
-                    this.show = true
-                    console.log("calculate is running")
-                    let rice_insulin = this.rice
-                    errors = ''
-                    if (rice_insulin == ""){
-                        alert("Please select your carbohydrate intake")
-                    }
-                    let target_insulin = this.targetBGL 
-                    if (target_insulin == ""){
-                        alert("Please enter your target glucose level")
-                    }
-                    else if (!isNumeric(target_insulin)) {
-                        alert("Please enter a valid number")
-                    }
-                    let current_insulin = this.currentBGL
-                    if (target_insulin == ""){
-                        alert("Please measure and enter your current glucose level")
-                    }
-                    else if (!isNumeric(target_insulin)) {
-                        alert("Please enter a valid number")
-                    }
-                    alert("working")
-                    // let total_insulin = rice_insulin + target_insulin
-                    // this.result = total_insulin
-                    // document.getElementById("results").innerHTML = "<h2>You need: ${total_insulin} units of insulin!</h2>"
-                }
-
-        const app = Vue.createApp({
-            data() {
-                return {
-
-                    greet: "breakfast",
-                    directory: [
-                        {
-                            date: "",
-                            timing: "",
-                            intake: ""
-                        },
-                    ],
-                    currentBGL: "",
-                    targetBGL: "",
-                    rice: "",
-                    result: "",
-                    show: false,
-                    dosage: ""
-
-                } //closing for return
-            }, //closing for data
-
-            methods: {
-                add_to_history() {
-                    console.log("add to history is loading")
-                    let new_rice = document.getElementById("rice")
-
-                    const d = new Date();
-                    let date = d.getDate()
-                    let month = d.getMonth() + 1
-                    let year = d.getFullYear()
-                    let hours = d.getHours()
-                    let minutes = d.getMinutes()
+        function work() {
+            console.log("calculate is running")
+            let rice_insulin = document.getElementById("rice").value
+            let target_insulin = document.getElementById("targetBGL").value
+            let current_insulin = document.getElementById("currentBGL").value
+            
+            let needed_insulin = (Number(current_insulin / target_insulin))
+            let total_insulin = (Number(rice_insulin) + needed_insulin).toPrecision(3)
 
 
-                    let new_date = [date, month, year].join('/')
-                    let new_timing = [hours, minutes].join(":")
-
-                    // Insert into this.directory
-                    this.directory.push(
-                        {
-                            date: new_date,
-                            timing: new_timing,
-                            intake: this.result
-                        }
-                    )
-                },
-                calculate() {
-                    this.show = true
-                    console.log("calculate is running")
-                    let rice_insulin = this.rice
-                    if (rice_insulin == ""){
-                        alert("Please select your carbohydrate intake")
-                    }
-                    let target_insulin = this.targetBGL 
-r
-                    if (target_insulin == ""){
-                        alert("Please enter your target glucose level")
-                    }
-                    else if (!isNumeric(target_insulin)) {
-                        alert("Please enter a valid number")
-                    }
-                    let current_insulin = this.currentBGL
-
-                    if (current_insulin == ""){
-                        alert("Please measure and enter your current glucose level")
-                    }
-                    else if (!isNumeric(current_insulin)) {
-                        alert("Please enter a valid number")
-                    }
-                    let total_insulin = rice_insulin + target_insulin
-                    // this.result = total_insulin
-                    return String(total_insulin)
-
-                }
-
-            }
-        })
+            document.getElementById("results").innerHTML = `<h2>You need ${total_insulin} units!</h2>`
+            document.getElementById("insulin").innerHTML = String(total_insulin)
 
 
-        const vm = app.mount('#app')
+        }
 
     </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
-<!-- 
-const app = Vue.createApp({
-
-    //=========== DATA PROPERTIES ===========
-    data() {
-        return {
-
-            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
-            greeting: "Hola Amigos!",
-
-            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
-            directory: [
-                {
-                    email: "frank@smu.edu.sg",
-                    category: "EDUCATION"
-                },
-                {
-                    email: "kyong@smu.edu.sg",
-                    category: "EDUCATION"
-                },
-                {
-                    email: "jennie@bpink.info",
-                    category: "OTHERS"
-                },
-                {
-                    email: "layfoo@kpop.org",
-                    category: "OTHERS"
-                }
-            ],
-
-            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
-            new_emails: "alice@smu.edu.sg, bob@gmail.com",
-
-            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
-            party_email_subject: "Year-End KBBQ Party",
-
-            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
-            party_email_message: "Dear friends! The year is ending, and it's party time! Please accept this invitation by 10 December 2021 yah? No need to bring anything except your wonderful hungry and thirsty self! Hope to see you and best wishes to you!",
-
-            // DO NOT MODIFY THIS BY MANUALLY EDITING IN THIS FILE
-            party_email_addresses: [
-                "kyong@smu.edu.sg",
-                "jennie@bpink.info"
-            ]
-
-        }
-    },
-
-    //=========== METHODS ===========
-    methods: {
-
-        add_to_directory() {
-
-            // YOUR CODE GOES HERE
-            // will involve some sort of logic
-            console.log(this.new_emails)
-
-            let temp = this.new_emails.split(",") // convert strings into array separated by the character that you define)
-
-            for (let email of temp) {
-
-                let user = {}
-                user.email = ""
-                user.category = "OTHERS"
-
-                console.log(email)
-
-                email = email.trim()
-
-                user.email = email
-
-                let email_parts = email.split("@") // jackedu@gmail.com -> {'jackedu', 'gmail'}
-
-                if (email_parts[1].includes("edu")) {
-                    user.category = "EDUCATION"
-                }
-
-                this.directory.push(user)
-            }
-
-            this.directory.push(user) // add new data at head, can include how to oec 
-
-        },
-
-        // Send part invitation
-        send_party_invitation() {
-
-            // YOUR CODE GOES HERE
-            let msg = `
-            Invitation send to ${this.party_email_addresses}
-            
-            `
-
-        }
-
-    }
-})
-
-
-
-
-// DO NOT MODIFY THIS
-// ASSOCIATING the current Vue app to an HTML element with id='app'
-app.mount('#app') -->
-
 </html>
