@@ -80,7 +80,7 @@ var marker = new google.maps.Marker({
         map.setZoom(20);
     }
     marker.setIcon(({
-        url: place.icon,
+        // url: place.icon,
         size: new google.maps.Size(71, 71),
         origin: new google.maps.Point(0, 0),
         anchor: new google.maps.Point(17, 34),
@@ -99,7 +99,7 @@ var marker = new google.maps.Marker({
         ].join(' ');
     }
 
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br><a target="_blank" href="' + place.url + '">' + "Get directions on Google Maps" + '</a>' + '</div>');
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address  + '<br><a target="_blank" href="' + place.url + '">' + "Get directions on Google Maps" + '</a>' + '</div>');
     infowindow.open(map, marker);
   
     // Location details
