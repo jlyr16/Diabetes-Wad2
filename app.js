@@ -30,12 +30,6 @@ window.onload = function initMap() {
             lng: position.coords.longitude,
           };
 
-          var marker = new google.maps.Marker({
-            position: pos,
-            map: map,
-          });
-
-
           map.setCenter(pos);
           map.setZoom(18);
         },
@@ -105,11 +99,7 @@ var marker = new google.maps.Marker({
         ].join(' ');
     }
 
-    var link = 
-    // <a href="url">link text</a>
-    // <a href="https://www.w3schools.com/" target="_blank"> Visit W3Schools!</a>
-
-    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address + '<br><a href="' + place.url + '" " target="_blank"" >' + "Get directions on Google Maps target blank" + '</a>' + '</div>');
+    infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address  + '<br><a target="_blank" href="' + place.url + '">' + "Get directions on Google Maps" + '</a>' + '</div>');
     infowindow.open(map, marker);
   
     // Location details
