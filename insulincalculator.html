@@ -10,8 +10,79 @@
     <link rel="stylesheet" href="./Bootstrap/bootstrap.min.css">
 
     <style>
-        .background {
+        .popup {
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            left: 25%;
+            right: 20%;
+        }
+
+        .containGreet {
             background-color: rgb(244, 217, 217);
+            padding: 0;
+            margin: 0;
+            flex: auto;
+        }
+
+        #greet {
+            padding: 15px;
+        }
+
+        .warning {
+            background-color: rgb(236, 151, 151);
+            z-index: 1;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 1s;
+            visibility: hidden;
+            position: absolute;
+            font-size: large;
+            font-weight: bold;
+            border-radius: 15%;
+            width: 200px;
+            height: fit-content;
+            left: 30%;
+            right: 50%;
+            /* margin-left: -80px; */
+
+
+        }
+
+        .show {
+            visibility: visible;
+            -webkit-animation: fadeIn 1s;
+            animation: fadeIn 1s;
+        }
+
+        .image {
+            width: 50px;
+            padding: 10px;
+
+        }
+
+        @-webkit-keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
         }
     </style>
     <title>Insulin Dosage</title>
@@ -23,17 +94,57 @@
 
     <script src="https://unpkg.com/vue@next"></script>
 
+    <nav class="navbar navbar-expand-lg  navbar-light bg-light">
+        <a class="navbar-brand" href="home.html"> DiaBEATes
+            <img src=https://cdn-icons-png.flaticon.com/512/5873/5873194.png width="30" height="30"
+                class="d-inline-block align-top" alt="" loading="lazy">
+        </a>
 
+
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="Glucose_Tracker.html">Glucose Tracker</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="nearby_clinics.html">Nearby Clinics</a>
+
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="recipes.html">Healthy Menu</a>
+
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="insulincalculator.html"><b style="color: #fc4903;">Insulin Calculator</b></a> <span class="sr-only"></span>
+                </li>
+
+            </ul>
+
+        </div>
+    </nav>
+    <div class="text-center containGreet">
+                    <!-- <div onload="greetings()" id="greet"></div> -->
+                    <div id="greet"></div>
+                </div>
 
     <div id="app">
         <div class="container-fluid">
 
 
-            <div class="py-2 text-center">
-                <!-- <div onload="greetings()" id="greet"></div> -->
-                <div id="greet"></div>
-            </div>
+            
 
+
+            <div class="popup" onclick="popupWarning(1)">
+                <span class="warning" id="myPopup">
+                </span>
+            </div>
 
             <div class="row">
 
@@ -107,7 +218,7 @@
 
 
     <script>
-        
+
         console.log("running")
 
         function greetings() {
@@ -140,14 +251,27 @@
             let year = full_date.getFullYear()
             let hours = full_date.getHours()
             let minutes = full_date.getMinutes()
+            let ampm = 'AM'
 
+            if (minutes < 10) {
+                minutes = '0' + String(minutes)
+            }
+
+            if (hours == 24) {
+                hours - 12
+            }
+            else if (hours > 12) {
+                hours -= 12
+                ampm = 'PM'
+
+            }
 
             let new_date = [date, month, year].join('/')
             let new_timing = [hours, minutes].join(":")
             console.log(new_date)
             console.log(new_timing)
             document.getElementById("date").innerHTML = String(new_date)
-            document.getElementById("time").innerHTML = String(new_timing)
+            document.getElementById("time").innerHTML = String(new_timing) + ampm
         }
 
         function work() {
@@ -155,17 +279,70 @@
             let rice_insulin = document.getElementById("rice").value
             let target_insulin = document.getElementById("targetBGL").value
             let current_insulin = document.getElementById("currentBGL").value
-            
-            let needed_insulin = (Number(current_insulin / target_insulin))
-            let total_insulin = (Number(rice_insulin) + needed_insulin).toPrecision(3)
 
+            if ((isNaN(Number(current_insulin))) || (isNaN(Number(target_insulin)))) {
+                popupWarning(1)
+                // alert("Please key in a valid number")
+            }
+            else if ((Number(current_insulin) < 0) || (Number(target_insulin) < 0)) {
+                popupWarning(2)
+                // alert("Please key in a positive value")
+            }
+            else if ((Number(current_insulin) > 215)) {
+                popupWarning(3)
+                // alert("Glucose level is too high! Please seek help from your doctor!")
+            }
+            else if ((Number(target_insulin) > 215)) {
+                popupWarning(4)
+                // alert("Glucose level is too high! Please seek correct target level from your doctor!")
+            }
+            else if (((current_insulin) != "") && ((target_insulin) != "")){
+                let needed_insulin = (Number(current_insulin / target_insulin))
+                let total_insulin = (Number(rice_insulin) + needed_insulin).toPrecision(3)
+                console.log(current_insulin)
 
-            document.getElementById("results").innerHTML = `<h2>You need ${total_insulin} units!</h2>`
-            document.getElementById("insulin").innerHTML = String(total_insulin)
+                document.getElementById("results").innerHTML = `<br><h2>You need ${total_insulin} units!</h2>`
+                document.getElementById("insulin").innerHTML = String(total_insulin) + ' units'
+            }
 
+        }
 
+        function popupWarning(warning) {
+            if (warning == 1) {
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                popup.innerHTML = `
+            <img src="./images/warning.png" class="image"><br>Please key in a valid number!
+            `
+            }
+            else if (warning == 2){
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                popup.innerHTML = `
+            <img src="./images/warning.png" class="image"><br>Please key in a positive value
+            `
+            }
+            else if (warning == 3){
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                popup.innerHTML = `
+            <img src="./images/warning.png" class="image">
+            <br>Glucose level is too high! Please seek correct target level from your doctor!
+            <br> <a href="nearby_clinics.html" class="w-100 btn btn-danger btn-lg mt-3">Find a nearby clinic</a>
+            `
+            }
+            else if (warning == 4){
+                var popup = document.getElementById("myPopup");
+                popup.classList.toggle("show");
+                popup.innerHTML = `
+            <img src="./images/warning.png" class="image">
+            <br>Glucose level is too high! Please seek correct target level from your doctor!
+            <br> <a href="nearby_clinics.html" class="w-100 btn btn-danger btn-lg mt-3">Find a nearby clinic</a>
+            `
+            }
         }
 
     </script>
 </body>
+
 </html>
