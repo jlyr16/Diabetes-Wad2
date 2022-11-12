@@ -1,7 +1,7 @@
 //const APP_ID = "788499ba";
 //const APP_KEY = "7f4f98dffe8f38aba786c8a08271185f";
 
-let searchButton = document.querySelector("#search")
+let searchButton = document.getElementById('search')
 var queryAPI = document.getElementById('input')
 
 
@@ -49,5 +49,5 @@ function useApiData(data){
             
     `
     })
-    document.querySelector("#results").innerHTML = recipeHTML
+    document.getElementById("results").innerHTML = recipeHTML
 }
