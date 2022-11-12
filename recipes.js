@@ -32,7 +32,7 @@ function useApiData(data){
     data.hits.map(result => {
         let carbQty = result.recipe.totalNutrients.CHOCDF.quantity.toFixed(2)
         recipeHTML += `  
-            <div class="g-col-4">
+            <div class="col">
                 <div class="card h-100">
                     <img src="${result.recipe.image}" class="card-img-top" alt="">
                     <div class="card-body">
