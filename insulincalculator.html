@@ -53,7 +53,6 @@
             height: fit-content;
             left: 30%;
             right: 50%;
-            /* margin-left: -80px; */
 
 
         }
@@ -134,7 +133,6 @@
         </div>
     </nav>
     <div class="text-center containGreet">
-                    <!-- <div onload="greetings()" id="greet"></div> -->
                     <div id="greet"></div>
                 </div>
 
@@ -193,7 +191,6 @@
                 </div><!-- div insulin -->
 
 
-                <!-- YOUR HISTORY -->
                 <div class="col-md-6 col-lg-4 p-3 bg-light order-md-last">
 
                     <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -286,19 +283,15 @@
 
             if ((isNaN(Number(current_insulin))) || (isNaN(Number(target_insulin)))) {
                 popupWarning(1)
-                // alert("Please key in a valid number")
             }
             else if ((Number(current_insulin) < 0) || (Number(target_insulin) < 0)) {
                 popupWarning(2)
-                // alert("Please key in a positive value")
             }
             else if ((Number(current_insulin) > 215)) {
                 popupWarning(3)
-                // alert("Glucose level is too high! Please seek help from your doctor!")
             }
             else if ((Number(target_insulin) > 215)) {
                 popupWarning(4)
-                // alert("Glucose level is too high! Please seek correct target level from your doctor!")
             }
             else if (((current_insulin) != "") && ((target_insulin) != "")){
                 let needed_insulin = (Number(current_insulin / target_insulin))
