@@ -94,8 +94,7 @@
 </head>
 
 <body onload="greetings()">
-    <link rel="stylesheet" href="../project/Bootstrap/bootstrap.min.css">
-    <script src="./Bootstrap/bootstrap.bundle.min.js"></script>
+
 
     <script src="https://unpkg.com/vue@next"></script>
 
@@ -166,7 +165,7 @@
 
                             <div class="col-12">
                                 <label for="rice" class="form-label">How much carbs did you have?</label>
-                                <select class="form-select" id="rice" required>
+                                <select class="custom-select" id="rice" required>
                                     <option value="">Choose...</option>
                                     <option value="0.26">1/2 cup (100 grams)</option>
                                     <option value="0.13">1/4 cup (50 grams)</option>
@@ -333,7 +332,7 @@
                 popup.innerHTML = `
             <img src="./images/warning.png" class="image">
             <br>Glucose level is too high! Please seek correct target level from your doctor!
-            <br> <a href="nearby_clinics.html" class="w-100 btn btn-danger btn-lg mt-3">Find a nearby clinic</a>
+            <br> <a href="nearby_clinics.html" class="w-100 btn btn-danger mt-3">Find a nearby clinic</a>
             `
             }
             else if (warning == 4){
@@ -342,7 +341,7 @@
                 popup.innerHTML = `
             <img src="./images/warning.png" class="image">
             <br>Glucose level is too high! Please seek correct target level from your doctor!
-            <br> <a href="nearby_clinics.html" class="w-100 btn btn-danger btn-lg mt-3">Find a nearby clinic</a>
+            <br> <a href="nearby_clinics.html" class="w-100 btn btn-danger mt-3">Find a nearby clinic</a>
             `
             }
         }
