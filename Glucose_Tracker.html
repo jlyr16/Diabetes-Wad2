@@ -49,10 +49,7 @@
         
       
       </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
+    
     </div>
   </nav>
 
@@ -116,31 +113,16 @@
 
   <main>
 
-    <!-- <div class="chart">
-      <canvas id="myChart" width="400" height="400"></canvas>
-    </div> -->
-
+  
 
     <div class="container-fluid chart">
       <canvas id="myChart"></canvas>
 
      
-      <!-- <div class="filter">
-        <div class="form-group">
-          <label for="exampleFormControlSelect1">Filter</label>
-          <select class="form-control" id="exampleFormControlSelect1">
-            <option>Week</option>
-            <option>Month</option>
-            <option>Year</option>
-          </select> -->
+      
         </div>
 
-        <!-- <div class="row" style="">
-          <div class="col" style="margin-left: auto; margin-right:auto;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-              Filter
-            </button>
-          </div> -->
+       
 
           <div class="row">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#Modal"  style="margin-left: auto; margin-right:auto; margin-top:25px; background-color:#fc4903; border:black;">
@@ -149,32 +131,6 @@
           
       </div>
 
-<!-- 
-      <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Filter Dates</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="recipient-name" class="col-form-label">Start Date:</label>
-                  <input type="date" class="form-control" id="recipient-name">
-                </div>
-              </form>
-              </div>
-              </div>  
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-              </div>
-            </div>
-          </div>
-        -->
 
         <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
@@ -204,25 +160,6 @@
           </div>
         </div>
 
-
-<!-- <div class="container-fluid" style="width: 100%; margin-left: auto; margin-right:auto;">
-  <div class="row">
-    <div class="col">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Filter
-      </button>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="container-fluid" style="width: 100%; margin-left: auto; margin-right:auto;">
-  <div class="row">
-    <div class="col" style="margin-left: auto; margin-right:auto;">
-      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Filter
-      </button>
-    </div>
-  </div> -->
 
 
 
@@ -301,26 +238,6 @@
         // //set the value of pushlabel to today's date
         document.getElementById("pushlabel").value = dateTime;
         
-        // var today = new Date();
-        // var dd = String(today.getDate()).padStart(2, '0');
-        // var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        // var yyyy = today.getFullYear();
-        // today = dd + '/' + mm + '/' + yyyy;
-        // // variable to fetch time
-        // var time = new Date();
-        // var hours = time.getHours();
-        // var minutes = time.getMinutes();
-        // var seconds = time.getSeconds();
-        // time = hours + ':' + minutes + ':' + seconds;
-        // //join date and time
-        // var date = today + ' ' + time;
-        // //set the value of the input to today's date
-        // document.getElementById("pushlabel").value = date;
-        // console.log(date);
-        // date="2022-02-26T12:00"
-        // //set the value of pushlabel to today's date
-        // document.getElementById("pushlabel").value = date;
-       
 
 
         //chart js
@@ -445,28 +362,7 @@
         });
 
 
-        // filter data
-        // var app = new Vue({
-        //   el: '#filter',
-        //   methods: {
-        //     filterData: function () {
-        //       var filter = document.getElementById('filter').value;
-        //       var filteredData = [];
-        //       var filteredLabels = [];
-        //       var data = myChart.data.datasets[0].data;
-        //       var labels = myChart.data.labels;
-        //       for (var i = 0; i < data.length; i++) {
-        //         if (data[i] > filter) {
-        //           filteredData.push(data[i]);
-        //           filteredLabels.push(labels[i]);
-        //         }
-        //       }
-        //       myChart.data.datasets[0].data = filteredData;
-        //       myChart.data.labels = filteredLabels;
-        //       myChart.update();
-        //     }
-        //   }
-        // });
+        
         var app = new Vue({
           el: '#filter',
           methods: {
@@ -493,22 +389,6 @@
         });
 
 
-
-        //change chart type
-        // var app = new Vue({
-        //   el: '#charttype',
-        //   methods: {
-        //     changeChartType: function () {
-        //       var value = document.getElementById('charttypevalue').value;
-        //       myChart.config.type = value;
-        //       myChart.update();
-        //     }
-        //   }
-        // });
-
-
-
-
         //retrieve data from local storage and display on chart on page load 
         var labels = JSON.parse(localStorage.getItem("labels"));
         var data = JSON.parse(localStorage.getItem("data"));
@@ -518,29 +398,7 @@
           myChart.update();
         }
 
-        // var labels = JSON.parse(localStorage.getItem("labels"));
-        // var data = JSON.parse(localStorage.getItem("data"));
-        // myChart.data.labels = labels;
-        // myChart.data.datasets[0].data = data;
-        // myChart.update();
-
-        //set interval to update chart every 5 seconds
-
-
-   
-
-
-
-        // await setInterval(function () {
-        //   localStorage.setItem("labels", JSON.stringify(myChart.data.labels));
-        //   localStorage.setItem("data", JSON.stringify(myChart.data.datasets[0].data));
-        // }, 1000);
-
-
-
-
-
-
+     
       </script>
 
 
@@ -556,25 +414,3 @@
 
 
 
-<!-- // const push = document.getElementById("push");
-
-const value = document.getElementById('pushvalue').value;
-onst label = document.getElementById('pushlabel').value;
-//   //push the value and label to the chart
-
-//   myChart.data.labels.push(label);
-//   myChart.data.datasets[0].data.push(value);
-//   //update the chart
-//   myChart.update();
-// });
-
-
-      <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Select Chart
-        </button>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Line Chart</a>
-          <a class="dropdown-item" href="#">Bar Chart</a>
-          <a class="dropdown-item" href="#">Pie Chart</a>
-        </div> -->
