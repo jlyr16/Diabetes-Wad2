@@ -1,6 +1,7 @@
 # Diabetes-Wad2
 
 //Github repository: https://github.com/jlyr16/Diabetes-Wad2
+//Hosted website: https://diabeates.netlify.app/
 
 //How to run the project using localhost server with WAMP
 
