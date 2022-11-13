@@ -1,7 +1,7 @@
 //const APP_ID = "788499ba";
 //const APP_KEY = "7f4f98dffe8f38aba786c8a08271185f";
 
-let searchButton = document.querySelector("#search")
+let searchButton = document.getElementById('search')
 var queryAPI = document.getElementById('input')
 
 
@@ -32,7 +32,7 @@ function useApiData(data){
     data.hits.map(result => {
         let carbQty = result.recipe.totalNutrients.CHOCDF.quantity.toFixed(2)
         recipeHTML += `  
-            <div class="g-col-4">
+            <div class="col-lg-4 col-md-6">
                 <div class="card h-100">
                     <img src="${result.recipe.image}" class="card-img-top" alt="">
                     <div class="card-body">
@@ -49,5 +49,5 @@ function useApiData(data){
             
     `
     })
-    document.querySelector("#results").innerHTML = recipeHTML
+    document.getElementById("results").innerHTML = recipeHTML
 }
