@@ -15,7 +15,7 @@ searchButton.addEventListener("click", ()=>{
 
 //An asynchronous function to fetch data from the API.
 async function sendApiRequest(){
-    const recipeURL = 'https://api.edamam.com/search?app_id=788499ba&app_key=7f4f98dffe8f38aba786c8a08271185f&q=' + queryAPI.value
+    const recipeURL = 'https://api.edamam.com/search?app_id=788499ba&app_key=7f4f98dffe8f38aba786c8a08271185f&to=50&q=' + queryAPI.value
     console.log(recipeURL)
     const response = await fetch(recipeURL)
     console.log(response)
