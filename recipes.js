@@ -11,6 +11,13 @@ searchButton.addEventListener("click", ()=>{
     sendApiRequest()
 })
 
+queryAPI.addEventListener("keypress", function(event) {
+    // If the user presses the "Enter" key on the keyboard
+    if (event.key === "Enter") {
+        sendApiRequest()
+      event.preventDefault();
+    }
+  });
 
 
 //An asynchronous function to fetch data from the API.
@@ -41,7 +48,7 @@ function useApiData(data){
                         <p class="dietLabel">Diet Label: ${result.recipe.dietLabels}</p>
                     </div>
                     <div class="card-footer">
-                        <a href="${result.recipe.url}" class="btn btn-primary">View Recipe</a>
+                        <a target="_blank" href="${result.recipe.url}" class="btn btn-primary">View Recipe</a>
                     </div>
                 </div>
             </div>
